@@ -5,8 +5,10 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SocialPlatforms;
+#if UNITY_ANDROID
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
+#endif
 using System.Collections;
 public class GameScript : MonoBehaviour
 {
@@ -63,9 +65,11 @@ public class GameScript : MonoBehaviour
         // {
         //     third_place_scoreText.text = "3. <b>" + PlayerPrefs.GetInt("ThirdHighScore").ToString() + "</b>";
         // }
+#if UNITY_ANDROID
         PlayGamesPlatform.InitializeInstance(new PlayGamesClientConfiguration.Builder().Build());
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
+#endif
 
         if (!Social.localUser.authenticated)
         {
@@ -94,7 +98,9 @@ public class GameScript : MonoBehaviour
         Anim.SetTrigger("ErrorLad");
         if (Social.localUser.authenticated)
         {
+#if UNITY_ANDROID
             PlayGamesPlatform.Instance.SignOut();
+#endif
         }
     }
     public void Click()
@@ -102,15 +108,19 @@ public class GameScript : MonoBehaviour
         audioSource.Play();
     }
 
+#if UNITY_ANDROID
     private PlayGamesPlatform platform;
+#endif
     public void MyltiplayerOn()
     {
         StopAllCoroutines();
         Anim.SetBool("MultiplayerOn", true);
 
+#if UNITY_ANDROID
         PlayGamesPlatform.InitializeInstance(new PlayGamesClientConfiguration.Builder().Build());
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
+#endif
 
         if (!Social.localUser.authenticated)
         {

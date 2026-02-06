@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
+#if UNITY_ANDROID
 using GooglePlayGames;
+#endif
 using UnityEngine.SocialPlatforms;
 using System.Linq;
 public class ButtonPlaceScript : MonoBehaviour
@@ -525,6 +527,7 @@ public class ButtonPlaceScript : MonoBehaviour
     {
         GameManager.score++;
 
+#if UNITY_ANDROID
         ILeaderboard leaderboard = PlayGamesPlatform.Instance.CreateLeaderboard();
         leaderboard.id = GIC.leaderboard_singleplayer_leaderboard;
         leaderboard.LoadScores(ok =>
@@ -546,6 +549,7 @@ public class ButtonPlaceScript : MonoBehaviour
                 }
             }
         });
+#endif
 
         main.Stop();
         dog.Stop();

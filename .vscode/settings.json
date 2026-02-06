@@ -52,5 +52,5 @@
         "Temp/": true
     },
     "dotnet.preferCSharpExtension": true,
-    "dotnet.defaultSolution": "No-Way.sln"
+    "dotnet.defaultSolution": "No-Way.slnx"
 }
